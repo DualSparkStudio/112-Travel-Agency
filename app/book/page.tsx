@@ -8,8 +8,12 @@ import Footer from '@/components/Footer'
 import WhatsAppButton from '@/components/WhatsAppButton'
 import BackButton from '@/components/BackButton'
 import 'react-datepicker/dist/react-datepicker.css'
+import type { ReactDatePickerProps } from 'react-datepicker'
 
-const DatePicker = dynamic(() => import('react-datepicker'), { ssr: false })
+const DatePicker = dynamic<ReactDatePickerProps>(
+  () => import('react-datepicker'),
+  { ssr: false }
+) as React.ComponentType<ReactDatePickerProps>
 
 export default function BookingPage() {
   const searchParams = useSearchParams()
