@@ -1,12 +1,13 @@
 'use client'
 
+import { Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import WhatsAppButton from '@/components/WhatsAppButton'
 
-export default function PaymentSuccessPage() {
+function PaymentSuccessContent() {
   const searchParams = useSearchParams()
   const bookingId = searchParams.get('bookingId')
 
@@ -47,6 +48,25 @@ export default function PaymentSuccessPage() {
       <Footer />
       <WhatsAppButton />
     </main>
+  )
+}
+
+export default function PaymentSuccessPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen">
+        <Navbar />
+        <section className="pt-32 pb-24 bg-off-white min-h-screen flex items-center">
+          <div className="container-custom max-w-2xl text-center">
+            <div className="animate-pulse">Loading...</div>
+          </div>
+        </section>
+        <Footer />
+        <WhatsAppButton />
+      </main>
+    }>
+      <PaymentSuccessContent />
+    </Suspense>
   )
 }
 

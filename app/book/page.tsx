@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
 import Navbar from '@/components/Navbar'
@@ -15,7 +15,7 @@ const DatePicker = dynamic<ReactDatePickerProps>(
   { ssr: false }
 ) as React.ComponentType<ReactDatePickerProps>
 
-export default function BookingPage() {
+function BookingForm() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const packageId = searchParams.get('package')
@@ -228,6 +228,25 @@ export default function BookingPage() {
       <Footer />
       <WhatsAppButton />
     </main>
+  )
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen">
+        <Navbar />
+        <section className="pt-32 pb-24 bg-off-white">
+          <div className="container-custom max-w-4xl text-center">
+            <div className="animate-pulse">Loading...</div>
+          </div>
+        </section>
+        <Footer />
+        <WhatsAppButton />
+      </main>
+    }>
+      <BookingForm />
+    </Suspense>
   )
 }
 

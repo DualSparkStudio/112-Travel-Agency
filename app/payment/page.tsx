@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Script from 'next/script'
 import Navbar from '@/components/Navbar'
@@ -13,7 +13,7 @@ declare global {
   }
 }
 
-export default function PaymentPage() {
+function PaymentForm() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [loading, setLoading] = useState(false)
@@ -171,6 +171,25 @@ export default function PaymentPage() {
       <Footer />
       <WhatsAppButton />
     </main>
+  )
+}
+
+export default function PaymentPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen">
+        <Navbar />
+        <section className="pt-32 pb-24 bg-off-white">
+          <div className="container-custom max-w-2xl text-center">
+            <div className="animate-pulse">Loading...</div>
+          </div>
+        </section>
+        <Footer />
+        <WhatsAppButton />
+      </main>
+    }>
+      <PaymentForm />
+    </Suspense>
   )
 }
 
