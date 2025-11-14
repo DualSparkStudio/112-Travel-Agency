@@ -94,13 +94,13 @@ export default function Hero() {
   }, [])
 
   // Magnetic button effect
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const button = e.currentTarget
-    const rect = button.getBoundingClientRect()
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const element = e.currentTarget
+    const rect = element.getBoundingClientRect()
     const x = e.clientX - rect.left - rect.width / 2
     const y = e.clientY - rect.top - rect.height / 2
 
-    gsap.to(button, {
+    gsap.to(element, {
       x: x * 0.3,
       y: y * 0.3,
       duration: 0.3,
@@ -108,7 +108,7 @@ export default function Hero() {
     })
   }
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
     gsap.to(e.currentTarget, {
       x: 0,
       y: 0,
