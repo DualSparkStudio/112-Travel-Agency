@@ -25,9 +25,6 @@ const nextConfig = {
   },
   basePath: isProd ? basePath : '',
   assetPrefix: isProd ? basePath : '',
-  experimental: {
-    appDir: true,
-  },
   trailingSlash: true,
 }
 
