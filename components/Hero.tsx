@@ -121,7 +121,7 @@ export default function Hero() {
     <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Main Background Image */}
       <div 
-        ref={(el) => (imageRefs.current[0] = el)}
+        ref={(el) => { imageRefs.current[0] = el }}
         className="absolute inset-0 z-0"
       >
         <Image
@@ -138,7 +138,7 @@ export default function Hero() {
 
       {/* Animated Overlay Images */}
       <div 
-        ref={(el) => (imageRefs.current[1] = el)}
+        ref={(el) => { imageRefs.current[1] = el }}
         className="absolute top-20 right-10 w-64 h-64 md:w-96 md:h-96 z-10 rounded-2xl overflow-hidden shadow-2xl opacity-80"
       >
         <Image
@@ -152,7 +152,7 @@ export default function Hero() {
       </div>
 
       <div 
-        ref={(el) => (imageRefs.current[2] = el)}
+        ref={(el) => { imageRefs.current[2] = el }}
         className="absolute bottom-20 left-10 w-56 h-56 md:w-80 md:h-80 z-10 rounded-2xl overflow-hidden shadow-2xl opacity-80"
       >
         <Image
